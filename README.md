@@ -96,8 +96,7 @@ issue.
 | Path | What it holds |
 |---|---|
 | `port/creeper/` | the port's own code: boot, HLE overrides, the corrections this title needs |
-| `port/patches/` | numbered patches to the runtime and `series`, the order they apply in |
-| `port/manifests/` | the image and SPU block manifests the lifter reads |
+| `port/manifests/` | the image manifest the lifter reads. The SPU block manifest is **not** here: it is generated from the player's own captures |
 | `tools/` | `env.sh`, `install.sh`, `setup-vfs.sh`, `lift.sh`, `converge.sh`, `build.sh`, `play.sh`, `check-tree.sh` |
 | `docs/` | the public documentation; `docs/dev/` holds engineering notes |
 
