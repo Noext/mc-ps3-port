@@ -19,6 +19,17 @@ tools/install.sh
 
 It asks where your files are, checks them, lifts the game, builds, and remembers the paths.
 
+Two options are for a launcher or a script rather than a person:
+
+```sh
+tools/install.sh --game /path/to/your/files   # take the game files from there, not Game/
+tools/install.sh --prepare --game /path/to/your/files
+```
+
+`--prepare` is the same work with no questions and no window: it prints `progress 0.4 Text` lines as it
+goes and exits non-zero if anything failed, which is the shape a launcher's setup step needs. Without the
+option nothing changes: the same script, the same prompts, the same output.
+
 ## Step by step
 
 ```sh
@@ -44,6 +55,17 @@ It needs a working build and a playable scenario. See [HOW-IT-WORKS.md](HOW-IT-W
 A `build/` carried through many edits can produce a binary that segfaults while the same commit in a clean tree runs
 fine. If a crash is new and unexplained, `rm -rf work/build` and rebuild before investigating. The tell is a binary
 much smaller than it should be.
+
+## Making a release
+
+```sh
+tools/package.sh --version 1.2.0
+```
+
+Writes `dist/ProjectCreeper-v1.2.0-Linux-x64.zip`: the port's own files, with `recomplauncher.json` at
+the top of the zip next to the tools, which is where RecompLauncher looks for it. It runs
+`tools/check-tree.sh` first, so a release cannot carry a game file. The zip holds no game material: the
+player's own copy is turned into a build by `tools/install.sh` on their machine.
 
 ## Parallelism
 

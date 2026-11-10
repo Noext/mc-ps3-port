@@ -6,6 +6,10 @@ All notable changes to this port are recorded here. Format: [Keep a Changelog](h
 
 ### Added
 - The port: boot, the lifted PPU and SPU translation of BLES01976 v01.02, and the HLE modules this title needs.
+- RecompLauncher support: `recomplauncher.json` (setup from the player's own folder, the runtime's settings on the
+  game's page, saves and logs named) and `tools/package.sh`, which ships it at the top of every release zip.
+- `tools/install.sh --game <folder>` and `--prepare`, the windowless setup step a launcher runs. Without them the
+  script behaves exactly as before.
 - `tools/converge.sh`, the loop that compiles the SPU code the game uploads at run time, with `SPU_STRICT` and
   `SPU_SHADOW` as its gates.
 - Documentation: how it works, how to build, how to supply your own files, known issues, roadmap, and engineering

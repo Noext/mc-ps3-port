@@ -48,6 +48,9 @@ TROPHY.TRP
 *.ls
 spu_*.cpp.patch
 
+# Release zips made by tools/package.sh
+/dist/
+
 # Build output, lifted code and caches
 /port/*/build*/
 /lift/

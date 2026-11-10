@@ -7,6 +7,8 @@
 
 **Minecraft: PlayStation 3 Edition: unofficial PC port (static recompilation)**
 
+<a href="https://recomplauncher.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://recomplauncher.com/assets/press/launcher/badge-light.svg"><img alt="Get it on RecompLauncher" src="https://recomplauncher.com/assets/press/launcher/badge-dark.svg" height="48"></picture></a>
+
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue)
 ![Status: playable](https://img.shields.io/badge/status-playable-brightgreen)
 ![Linux x64](https://img.shields.io/badge/platform-Linux%20x64-333)
@@ -46,6 +48,19 @@ As of 2026-11-10, on Linux x64 with an NVIDIA RTX 4060 Laptop GPU, the maintaine
 
 What works and what does not, item by item: [docs/FEATURES.md](docs/FEATURES.md). Open problems:
 [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md).
+
+## How to play
+
+You need the **decrypted `EBOOT.elf` from your own BLES01976 disc** (Europe, v01.02) and the decrypted
+firmware modules of your own PS3 dump, together in one folder: `EBOOT.elf` and `fw/` beside it. What each
+file must be is in [docs/GETTING-FILES.md](docs/GETTING-FILES.md); how you obtain and decrypt them is yours to
+do, with your own tools, from your own disc.
+
+**With RecompLauncher**, drop that folder on the game's setup screen. It checks the copy, runs
+`tools/install.sh --prepare` to translate and build the game's code from your files, and then Play starts it.
+The translation takes a while the first time, because every function of the game is compiled on your PC.
+
+**By hand**, from a clone: see the command below.
 
 ## Getting it
 
@@ -97,7 +112,7 @@ issue.
 |---|---|
 | `port/creeper/` | the port's own code: boot, HLE overrides, the corrections this title needs |
 | `port/manifests/` | the image manifest the lifter reads. The SPU block manifest is **not** here: it is generated from the player's own captures |
-| `tools/` | `env.sh`, `install.sh`, `setup-vfs.sh`, `lift.sh`, `converge.sh`, `build.sh`, `play.sh`, `check-tree.sh` |
+| `tools/` | `env.sh`, `install.sh`, `setup-vfs.sh`, `lift.sh`, `converge.sh`, `build.sh`, `play.sh`, `package.sh`, `check-tree.sh` |
 | `docs/` | the public documentation; `docs/dev/` holds engineering notes |
 
 ## Licence

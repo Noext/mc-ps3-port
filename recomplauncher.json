@@ -1,0 +1,339 @@
+{
+  "$schema": "https://recomplauncher.com/schema/recomplauncher.json",
+  "format": 1,
+  "name": "Project Creeper",
+  "repo": "Noext/mc-ps3-port",
+  "game": {
+    "kind": "folder",
+    "label": "The folder that holds the decrypted EBOOT.elf from your own BLES01976 disc (Europe, v01.02), with the fw folder of decrypted firmware modules beside it. Your disc folder (PS3_GAME) too, if you have it unpacked.",
+    "check": {
+      "file": "EBOOT.elf"
+    }
+  },
+  "prepare": {
+    "program": [
+      "tools/install.sh"
+    ],
+    "args": [
+      "--prepare",
+      "--game",
+      "{game}"
+    ],
+    "label": "Translating and building the game's own code from your files",
+    "timeout": 10800
+  },
+  "start": {
+    "program": [
+      "tools/play.sh"
+    ],
+    "args": []
+  },
+  "config": [
+    {
+      "id": "main",
+      "format": "ini",
+      "file": [
+        {
+          "path": "{install}/work/user/settings.ini"
+        }
+      ],
+      "new": {
+        "graphics/resolution_scale": "1",
+        "graphics/fullscreen": "0",
+        "graphics/fps_limit": "1",
+        "graphics/show_fps": "1",
+        "graphics/motion_blur": "1",
+        "graphics/async_shaders": "1",
+        "audio/enabled": "1",
+        "performance/spu_park": "0",
+        "advanced/log_level": ""
+      }
+    }
+  ],
+  "settings": [
+    {
+      "id": "resolution",
+      "label": "Internal resolution",
+      "help": "What the game draws at. 720p is the console's own; 2160p needs a fast graphics card.",
+      "choices": [
+        {
+          "label": "720p",
+          "set": {
+            "graphics/resolution_scale": "1"
+          }
+        },
+        {
+          "label": "1080p",
+          "set": {
+            "graphics/resolution_scale": "1.5"
+          }
+        },
+        {
+          "label": "1440p",
+          "set": {
+            "graphics/resolution_scale": "2"
+          }
+        },
+        {
+          "label": "2160p",
+          "set": {
+            "graphics/resolution_scale": "3"
+          }
+        }
+      ],
+      "defaults": {
+        "graphics/resolution_scale": "1"
+      }
+    },
+    {
+      "id": "window",
+      "label": "Fullscreen",
+      "help": "Fills the screen without a border. F11 or Alt+Enter switches while playing.",
+      "choices": [
+        {
+          "label": "Windowed",
+          "set": {
+            "graphics/fullscreen": "0"
+          }
+        },
+        {
+          "label": "Fullscreen",
+          "set": {
+            "graphics/fullscreen": "1"
+          }
+        }
+      ],
+      "defaults": {
+        "graphics/fullscreen": "0"
+      }
+    },
+    {
+      "id": "fps",
+      "label": "Frame rate",
+      "help": "Match display follows your monitor. The game keeps its own pacing between 15 FPS and the target.",
+      "choices": [
+        {
+          "label": "Game's own",
+          "set": {
+            "graphics/fps_limit": "0"
+          }
+        },
+        {
+          "label": "Match display",
+          "set": {
+            "graphics/fps_limit": "1"
+          }
+        },
+        {
+          "label": "30",
+          "set": {
+            "graphics/fps_limit": "30"
+          }
+        },
+        {
+          "label": "60",
+          "set": {
+            "graphics/fps_limit": "60"
+          }
+        },
+        {
+          "label": "120",
+          "set": {
+            "graphics/fps_limit": "120"
+          }
+        },
+        {
+          "label": "144",
+          "set": {
+            "graphics/fps_limit": "144"
+          }
+        }
+      ],
+      "defaults": {
+        "graphics/fps_limit": "1"
+      }
+    },
+    {
+      "id": "async_shaders",
+      "label": "Asynchronous shaders",
+      "help": "Builds new shaders in the background, so a first visit to an area does not stutter. Objects can appear a moment late the first time.",
+      "choices": [
+        {
+          "label": "On",
+          "set": {
+            "graphics/async_shaders": "1"
+          }
+        },
+        {
+          "label": "Off",
+          "set": {
+            "graphics/async_shaders": "0"
+          }
+        }
+      ],
+      "defaults": {
+        "graphics/async_shaders": "1"
+      }
+    },
+    {
+      "id": "motion_blur",
+      "label": "Motion blur",
+      "help": "The camera and attack blur the game itself draws.",
+      "choices": [
+        {
+          "label": "On",
+          "set": {
+            "graphics/motion_blur": "1"
+          }
+        },
+        {
+          "label": "Off",
+          "set": {
+            "graphics/motion_blur": "0"
+          }
+        }
+      ],
+      "defaults": {
+        "graphics/motion_blur": "1"
+      }
+    },
+    {
+      "id": "fps_counter",
+      "label": "Show FPS",
+      "help": "A small frame rate counter in the corner of the screen.",
+      "choices": [
+        {
+          "label": "Off",
+          "set": {
+            "graphics/show_fps": "0"
+          }
+        },
+        {
+          "label": "On",
+          "set": {
+            "graphics/show_fps": "1"
+          }
+        }
+      ],
+      "defaults": {
+        "graphics/show_fps": "1"
+      }
+    },
+    {
+      "id": "sound",
+      "label": "Sound",
+      "help": "Turn off to run on a machine with no audio device.",
+      "choices": [
+        {
+          "label": "On",
+          "set": {
+            "audio/enabled": "1"
+          }
+        },
+        {
+          "label": "Off",
+          "set": {
+            "audio/enabled": "0"
+          }
+        }
+      ],
+      "defaults": {
+        "audio/enabled": "1"
+      }
+    },
+    {
+      "id": "spu_park",
+      "label": "Park idle SPU threads",
+      "help": "Lower CPU use and heat from the Cell's five SPUs; can cost a few FPS.",
+      "choices": [
+        {
+          "label": "Off",
+          "set": {
+            "performance/spu_park": "0"
+          }
+        },
+        {
+          "label": "On",
+          "set": {
+            "performance/spu_park": "1"
+          }
+        }
+      ],
+      "defaults": {
+        "performance/spu_park": "0"
+      }
+    },
+    {
+      "id": "log_level",
+      "label": "Log detail",
+      "help": "More detail in the log, for a bug report.",
+      "choices": [
+        {
+          "label": "Normal",
+          "set": {
+            "advanced/log_level": ""
+          }
+        },
+        {
+          "label": "Debug",
+          "set": {
+            "advanced/log_level": "debug"
+          }
+        },
+        {
+          "label": "Trace",
+          "set": {
+            "advanced/log_level": "trace"
+          }
+        }
+      ],
+      "defaults": {
+        "advanced/log_level": ""
+      }
+    }
+  ],
+  "saves": [
+    "{install}/work/vfs/dev_hdd0/home/00000001/savedata"
+  ],
+  "folders": {
+    "saves": [
+      {
+        "path": "{install}/work/vfs/dev_hdd0/home/00000001/savedata"
+      }
+    ],
+    "logs": [
+      {
+        "path": "{install}"
+      }
+    ],
+    "cache": [
+      {
+        "path": "{install}/shader_cache"
+      }
+    ]
+  },
+  "looks": {
+    "graphics": "vulkan",
+    "lines": 720
+  },
+  "actions": [
+    {
+      "id": "saves",
+      "label": "Saves",
+      "help": "The worlds this build has written.",
+      "open": "saves"
+    },
+    {
+      "id": "logs",
+      "label": "Log",
+      "help": "What the last run printed. Attach it to a bug report.",
+      "open": "logs"
+    },
+    {
+      "id": "cache",
+      "label": "Clear shader cache",
+      "help": "Only helps if graphics look wrong after an update. The game builds it again as it runs.",
+      "clear": "cache"
+    }
+  ]
+}
