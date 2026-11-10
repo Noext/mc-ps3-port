@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: "Project Creeper"
+message: "If you use or refer to this project, cite it as below."
+type: software
+license: MIT
+repository-code: "https://github.com/Noext/mc-ps3-port"
+abstract: >-
+  An unofficial PC port of Minecraft: PlayStation 3 Edition (BLES01976), made by static recompilation of
+  the game's PPU and SPU code to C++ with a reimplemented PS3 system library layer and a Vulkan RSX
+  backend. Contains no game material.
+keywords:
+  - ps3
+  - static-recompilation
+  - spurs
+  - vulkan
+  - linux

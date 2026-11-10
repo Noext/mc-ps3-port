@@ -1,0 +1,53 @@
+{
+  "$schema": "https://recomp.fyi/schema/v1.json",
+  "game": "Minecraft: PlayStation 3 Edition",
+  "wikidata": "Q1163922",
+  "system": "PS3",
+  "type": "recomp",
+  "original": {
+    "region": "EU",
+    "serial": "BLES01976",
+    "revision": "01.02"
+  },
+  "project": "Project Creeper",
+  "status": "in-progress",
+  "targets": [
+    "PC (Linux)"
+  ],
+  "toolchain": [
+    "ps3base"
+  ],
+  "approach": "Static recompilation of the PPU and SPU code to C++, a reimplementation of the PS3 system libraries, a Vulkan RSX backend",
+  "maintainers": [
+    {
+      "name": "Noext",
+      "link": "https://github.com/Noext"
+    }
+  ],
+  "links": [
+    {
+      "label": "Features",
+      "url": "https://github.com/Noext/mc-ps3-port/blob/main/docs/FEATURES.md"
+    },
+    {
+      "label": "Known issues",
+      "url": "https://github.com/Noext/mc-ps3-port/blob/main/docs/KNOWN_ISSUES.md"
+    },
+    {
+      "label": "Roadmap",
+      "url": "https://github.com/Noext/mc-ps3-port/blob/main/docs/ROADMAP.md"
+    }
+  ],
+  "help": [
+    "Testing on other GPUs (AMD, Intel) and CPUs",
+    "Playing long sessions to catch the known server crash",
+    "Confirming audio output on a machine with a sound device"
+  ],
+  "tags": [
+    "cell",
+    "spurs",
+    "vulkan",
+    "linux"
+  ],
+  "notes": "Needs your own copy of the game (a decrypted EBOOT from your own BLES01976 disc, and the firmware modules from your own PS3 dump); the build happens on your PC. Playable: world creation proven 10/10, movement, mining, inventory and block placement in Survival. 99.9% of SPU code compiled ahead of time, measured during world generation."
+}
