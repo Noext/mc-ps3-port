@@ -21,7 +21,7 @@ repository holds only the port. Each player lifts and builds the game's code fro
 |---|---|
 | `port/creeper/` | the port's own code: boot, HLE overrides, corrections this title needs |
 | `port/manifests/` | the image manifest the lifter reads. The SPU block manifest is **not** here: it is generated from the player's own captures |
-| `tools/` | `env.sh`, `install.sh`, `setup-vfs.sh`, `lift.sh`, `converge.sh`, `build.sh`, `play.sh`, `check-tree.sh` |
+| `tools/` | `env.sh`, `install.sh`, `setup-vfs.sh`, `lift.sh`, `converge.sh`, `build.sh`, `play.sh`, `package.sh`, `check-tree.sh` |
 | `docs/` | public documentation; `docs/dev/` holds engineering notes |
 | `CHANGELOG.md` | what each release contains, newest first |
 

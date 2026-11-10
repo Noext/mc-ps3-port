@@ -74,6 +74,26 @@ else:
 
 subprocess.run([sys.executable, os.path.join(pkg, "recomp", "spu", "codegen.py"),
                 os.path.join(lift, "spu"), blocks_bin], check=True)
+
+# The runtime's CMake refuses to configure without this stamp, and it is right
+# to: a glob over an empty folder would otherwise become a link error hundreds
+# of lines later. The stamp says "these are all the native SPU sources there
+# are", so an empty table is a stated fact rather than a missing file. Format
+# and content are tools/setup.py's (sha256, then the path).
+import hashlib
+gen = os.path.join(lift, "spu")
+rows = []
+for base, _, names in os.walk(gen):
+    for n in names:
+        if n.endswith((".cpp", ".h", ".inc")):
+            p = os.path.join(base, n)
+            with open(p, "rb") as f:
+                rows.append((hashlib.sha256(f.read()).hexdigest(),
+                             os.path.relpath(p, gen).replace(os.sep, "/")))
+rows.sort()
+with open(os.path.join(gen, "generated.txt"), "w", newline="\n") as f:
+    f.writelines("%s %s\n" % (h, p) for h, p in rows)
+print("lift: %d native SPU source(s) stamped" % len(rows))
 print("lift: done")
 PY
 
